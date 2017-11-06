@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myApi.apps.MyapiConfig',
     'rest_framework',
+    'galleryVuejs',
 
 ]
 

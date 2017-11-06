@@ -6,4 +6,5 @@ from myApi.models import gallery
 class gallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = gallery
-        fields = ('title', 'image',)
+        fields = ('pk','title', 'image', 'thumbnail',)
+        read_only_fields = ('thumbnail',)
