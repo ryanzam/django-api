@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gallery | JQuery</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-
+    <title>Gallery | Vuejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">    
+    <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
-<ul id="img-gal">
+<div id="app">
+    <ul>
+        <li v-for="img in images">
+            <h1>{{img.title}}</h1>
+            <img :src= "imgUrl('{{img.image}}')" alt="">            
+        </li>
+    </ul>
+</div>
 
-</ul>
+<script>
 
-
+    new Vue({
+        el: '#app',
+        data: {
+            images: []
+          },
+          created () {
+            var vm = this
+            axios.get('http://localhost:8000/api/images/')
+              .then(function (response) {
+                vm.images = response.data
+              })
+          }
+        })
+        
+</script>
 
 </body>
 </html>
